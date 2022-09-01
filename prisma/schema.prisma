@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Contact {
+  id       Int    @id @default(autoincrement())
+  fullName String
+  email    String
+  subject  String
+  message  String
+  read     Boolean    @default(false)
+}
+
+model MembershipSubmission {
+  id         Int       @id @default(autoincrement())
+  fullName   String
+  birthdate  DateTime
+  address    String
+  postalCode String
+  location   String
+  phone      String
+  photo      String
+  email      String
+  handled    Boolean   @default(false)
+}
+
+model Member {
+  id         Int      @id @default(autoincrement())
+  fullName   String
+  birthdate  DateTime
+  address    String
+  postalCode String
+  location   String
+  phone      String
+  photo      String
+  email      String
+  handled    Boolean
+}
+
+model Fixture {
+  id            Int        @id @default(autoincrement())
+  date          DateTime
+  location      String
+  venue         String
+  homeTeamId    Int
+  homeTeam      Team       @relation(name: "HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeamId    Int
+  awayTeam      Team       @relation(name: "AwayTeam", fields: [awayTeamId], references: [id])
+  homeTeamGoals Int?
+  awayTeamGoals Int?
+  competition   String
+  round         String?
+  season        String
+}
+
+model Roster {
+  id                Int        @id @default(autoincrement())
+  fullname          String
+  nickname          String
+  photo             String
+  nationality       String
+  age               Int
+  number            Int
+  position          String
+  specific_position String?
+  zerozeroId        Int
+  step              String
+}
+
+model CashFlow {
+  id          Int    @id @default(autoincrement())
+  amount      Float
+  type        String
+  description String
+  category    String
+}
+
+model Team {
+  id             Int       @id @default(autoincrement())
+  step           String
+  name           String
+  shorthand_name String
+  zerozero_alias String
+  competition    String
+  logo           String
+  homeFixtures   Fixture[] @relation("HomeTeam")
+  awayFixtures   Fixture[] @relation("AwayTeam")
+}

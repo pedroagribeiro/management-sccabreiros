@@ -8,7 +8,7 @@ import { SubPage } from '../navigation/PageHeader';
 type MainLayoutProps = {
   title: string;
   description: string;
-  subpages: SubPage[];
+  subpages?: SubPage[];
   children?: ReactNode;
 };
 
