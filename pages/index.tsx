@@ -2,6 +2,7 @@ import type { NextPageWithLayout } from './_app';
 import Head from 'next/head';
 import Image from 'next/image';
 import MainLayout from '../components/layouts/MainLayout';
+import { ReactElement } from 'react';
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -12,7 +13,7 @@ const Home: NextPageWithLayout = () => {
 };
 
 Home.getLayout = (page: ReactElement) => (
-  <MainLayout title='Início' description=''>
+  <MainLayout title='Início' description='' subpages={[]}>
     {page}
   </MainLayout>
 );
