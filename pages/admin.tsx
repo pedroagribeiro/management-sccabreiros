@@ -1,6 +1,6 @@
-import { NextPageWithAuth } from 'auth/types';
+import { NextPageWithAuthAndLayout } from 'types/pages';
 
-const AdminPage: NextPageWithAuth = () => {
+const AdminPage: NextPageWithAuthAndLayout = () => {
   return (
     <>
       <h1>This page is protected by Middleware</h1>

@@ -1,11 +1,9 @@
 import React from 'react';
-import { ImYoutube, ImFacebook } from 'react-icons/im';
-import { FiInstagram } from 'react-icons/fi';
 import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className='flex flex-col divide-y divide-white shadow-md'>
+    <footer className='w-full absolute bottom-0 flex flex-col divide-y divide-white shadow-md'>
       <div className='flex flex-col'>
         <div className='w-full h-1 bg-green-600'></div>
         <div className='flex flex-col divide-y divide-white'>

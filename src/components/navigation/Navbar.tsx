@@ -5,25 +5,7 @@ import { IoMdPerson } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Navbar = () => {
-  const upperBarItems = [
-    { title: 'Faz-te sócio', url: '/membership' },
-    {
-      title: 'Formação',
-      url: '/youngsters',
-    },
-    {
-      title: 'Instalações',
-      url: '/facilities',
-    },
-    {
-      title: 'Parceiros',
-      url: '/partners',
-    },
-    {
-      title: 'Contacto',
-      url: '/contact',
-    },
-  ];
+  const upperBarItems: Array<any> = [];
 
   const lowerBarItems = [
     {
@@ -33,6 +15,10 @@ const Navbar = () => {
     {
       title: 'Contactos',
       url: '/contacts',
+    },
+    {
+      title: 'Finanças',
+      url: '/finances',
     },
   ];
 
