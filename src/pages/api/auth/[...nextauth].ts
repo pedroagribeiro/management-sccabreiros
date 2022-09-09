@@ -1,46 +1,35 @@
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { trpc } from '../../../utils/trpc';
 
-export default NextAuth({
-  pages: {
-    signIn: '/login',
+export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt',
   },
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      name: 'Credentials',
       credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
+        username: { label: 'Username', type: 'text', placeholder: 'Username (jonas)' },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: 'Password (123)',
         },
-        password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req) {
-        console.log(credentials);
-        // const {
-        //   data: result,
-        //   refetch,
-        //   isLoading,
-        // } = trpc.useQuery([
-        //   'session.validate-session',
-        //   { username: credentials!.username, password: credentials!.password },
-        // ]);
-
-        // if (result?.validation && result.username) {
-        //   return result;
-        // }
-        alert('tentei');
-        if (credentials!.username === 'abc') {
+      async authorize(credentials, _req) {
+        if (credentials?.username !== 'jonas' || credentials?.password !== '123') return null;
+        else
           return {
-            user: {
-              name: 'ABC',
-            },
+            username: credentials?.username,
+            email: credentials?.username + '@emele.com',
           };
-        }
-
-        return null;
       },
     }),
   ],
-});
+  theme: {
+    colorScheme: 'light',
+  },
+  debug: true,
+};
+
+export default NextAuth(authOptions);
